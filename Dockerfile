@@ -13,6 +13,9 @@ ARG BACKEND_PRODUCTS_URL=http://localhost:8082
 RUN echo "BACKEND_USERS_URL=${BACKEND_USERS_URL}" > .env && \
     echo "BACKEND_PRODUCTS_URL=${BACKEND_PRODUCTS_URL}" >> .env
 
+# Verificar que el .env se creó bien
+RUN cat .env
+
 # Generar los archivos estáticos en output/
 RUN mvn clean compile exec:java
 

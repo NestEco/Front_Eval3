@@ -11,6 +11,13 @@ public class StaticPageGenerator {
     private static final String OUTPUT_DIR = "output";
 
     private static String getEnv(String key, String defaultValue) {
+        // 1. Primero intenta leer variable de entorno del sistema
+        String sysEnv = System.getenv(key);
+        if (sysEnv != null && !sysEnv.isEmpty()) {
+            return sysEnv;
+        }
+        
+        // 2. Si no, intenta leer el archivo .env
         Path envPath = Paths.get(".env");
         if (Files.exists(envPath)) {
             try {
